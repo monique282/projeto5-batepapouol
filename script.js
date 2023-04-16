@@ -77,13 +77,13 @@ function listaDeMensagem(resposta) {
     
     for (let i = 0; i < resposta.data.length; i++){
         if (resposta.data[i].type === 'status') {
-            buscar.innerHTML += `<div class="pessoas status">
+            buscar.innerHTML += `<div class="pessoas status" data-test="message">
              <p> <span class = "timer"> ${resposta.data[i].time} 
              </span> <span class = "negrito"> ${resposta.data[i].from}
              </span> ${resposta.data[i].text}</p>
          </div>`
         } else if (resposta.data[i].type === 'message'){
-            buscar.innerHTML += `<div class="pessoas message">
+            buscar.innerHTML += `<div class="pessoas message" data-test="message">
              <p> <span class = "timer"> ${resposta.data[i].time} 
              </span> <span class = "negrito"> ${resposta.data[i].from}
              </span> para <span class = "negrito"> ${resposta.data[i].to} 
@@ -93,7 +93,7 @@ function listaDeMensagem(resposta) {
         ((resposta.data[i].from === adicionar.name) || 
         (resposta.data[i].to === adicionar.name))
         ){
-            buscar.innerHTML += `<div class="pessoas privado">
+            buscar.innerHTML += `<div class="pessoas privado" data-test="message">
              <p> <span class = "timer"> ${resposta.data[i].time} 
              </span> <span class = "negrito"> ${resposta.data[i].from}
              </span> reservdamente para <span class = "negrito"> ${resposta.data[i].to} 
