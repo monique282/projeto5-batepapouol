@@ -34,8 +34,8 @@ function timestatus() {
 // vendo se deu eraado ou certo
 function ver(olhar) {
     console.log(`deu certo ${olhar.status}`);
-    setInterval(timestatus, 5000);
     atualizarMensagem();
+    setInterval(timestatus, 5000);
     setInterval(atualizarMensagem, 3000);
 
 };
