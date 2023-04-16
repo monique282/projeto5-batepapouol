@@ -34,7 +34,7 @@ function naoDeu(rep) {
     perguntar();
 };
 
-// fazendo o botão de envio fincionar
+/* fazendo o botão de envio fincionar
 function enviarMensagem() {
 
     // salvando o que a pessoa digitou
@@ -63,6 +63,6 @@ function enviarMensagem() {
                 <p>`${nome}`</p>
                 <p>`${mensagem}`</p>
             </div>`
-    }*/
+    }
 
-}
+}*/
