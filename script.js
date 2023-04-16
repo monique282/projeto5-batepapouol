@@ -20,7 +20,7 @@ let adicionar = {
 // adicionando o nome da pessoa em um array, mais acho que nao precisa
 listaDePessoas.push(adicionar);
 // mandando o nome da pessa pro servidor
-let resposta = axios.post('https://mock-api.driven.com.br/api/vm/uol/participants ', adicionar);
+//let resposta = axios.post('https://mock-api.driven.com.br/api/vm/uol/participants ', adicionar);
 resposta.then(ver);
 resposta.catch(naoDeu);
 };
@@ -28,6 +28,7 @@ resposta.catch(naoDeu);
 // vendo se deu eraado ou certo
 function ver(olhar) {
     console.log(`deu certo ${olhar.status}`);
+    let resposta = axios.post('https://mock-api.driven.com.br/api/vm/uol/participants ', adicionar);
 };
 function naoDeu(rep) {
     console.log(`deu errado `);
