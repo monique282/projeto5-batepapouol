@@ -36,7 +36,7 @@ function ver(olhar) {
     console.log(`deu certo ${olhar.status}`);
     setInterval(timestatus, 5000);
     atualizarMensagem();
-    setInterval(atualizarMensagem, 5000);
+    setInterval(atualizarMensagem, 3000);
 
 };
 function naoDeu(rep) {
