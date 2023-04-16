@@ -8,11 +8,12 @@ let listaDePessoas = [];
 let listaDeMensagem = [];
 let verificar = 0;
 let mensagem , mensagemCom, aparecer;
+let nome;
 
 perguntar();
 function perguntar(){
 // perguntoando o nome
-let nome = prompt('Qual o seu nome?');
+ nome = prompt('Qual o seu nome?');
 // adicionando o nome em um objeto
 let adicionar = {
     name: nome,
@@ -20,7 +21,7 @@ let adicionar = {
 // adicionando o nome da pessoa em um array, mais acho que nao precisa
 listaDePessoas.push(adicionar);
 // mandando o nome da pessa pro servidor
-//let resposta = axios.post('https://mock-api.driven.com.br/api/vm/uol/participants ', adicionar);
+let resposta = axios.post('https://mock-api.driven.com.br/api/vm/uol/participants ', adicionar);
 resposta.then(ver);
 resposta.catch(naoDeu);
 };
@@ -28,14 +29,14 @@ resposta.catch(naoDeu);
 // vendo se deu eraado ou certo
 function ver(olhar) {
     console.log(`deu certo ${olhar.status}`);
-    let resposta = axios.post('https://mock-api.driven.com.br/api/vm/uol/participants ', adicionar);
+
 };
 function naoDeu(rep) {
     console.log(`deu errado `);
     perguntar();
 };
 
-/* fazendo o botão de envio fincionar
+ //fazendo o botão de envio fincionar
 function enviarMensagem() {
 
     // salvando o que a pessoa digitou
@@ -53,7 +54,7 @@ function enviarMensagem() {
     }
     console.log(mensagemCom);
     let mensagemCompleta = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', mensagemCom)
-    console.log(mensagemCompleta);
+    console.log(mensagemCompleta);}
 
     // preciso pegar a mensagem digitada o nome e o horario e mostrar na tela, 
 
