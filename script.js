@@ -2,15 +2,13 @@
 
 
 axios.defaults.headers.common['Authorization'] = '2WykYIFo1nfqpAeCvmGSo87Z';
-console.log(axios);
+
 
 let listaDePessoas = [];
-
 let verificar = 0;
 let mensagem, aparecer;
 let mensagemCom = {
-    from: '', to: "Todos", text: '', type: "message"
-}
+    from: '', to: "Todos", text: '', type: "message"}
 let nome;
 let resposta, conferindo;
 let adicionar = { name: '', };
@@ -39,7 +37,7 @@ function ver(olhar) {
 
 };
 function naoDeu(rep) {
-    console.log(`deu errado `);
+    // se der errado perguntar o nome denovo
     perguntar();
 };
 
@@ -48,56 +46,57 @@ function enviarMensagem() {
     // salvando o que a pessoa digitou
     mensagem = document.getElementById('digitar').value;
     mensagemCom.text = mensagem;
-    console.log(mensagemCom);
-    // salvando o horario que a pessoa digitou a mensagem
+  
     // enviando a menagem para o servidor do geito que pediram
     let mensagemCompleta = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', mensagemCom);
-    mensagemCompleta.then((respostas)=>{
-        console.log(respostas);
+    mensagemCompleta.then((respostas) => {
         atualizarMensagem();
     });
     mensagemCompleta.catch(saiuDaSala);
-   
+    document.getElementById('digitar').value = '';
+
 }
 
-function saiuDaSala(){
+function saiuDaSala() {
+    // regarregar a tela se a pessoa nao esta mais logada
     window.location.reload();
 };
 
 // preciso pegar a mensagem digitada o nome e o horario e mostrar na tela, 
-function atualizarMensagem(){
-let verMensagemDoServidor = axios.get('https://mock-api.driven.com.br/api/vm/uol/messages');
-verMensagemDoServidor.then(listaDeMensagem);
+function atualizarMensagem() {
+    // pegar as mensagem do sevidor
+    let verMensagemDoServidor = axios.get('https://mock-api.driven.com.br/api/vm/uol/messages');
+    verMensagemDoServidor.then(listaDeMensagem);
 };
 function listaDeMensagem(resposta) {
-
+// Agora vamos printar as mensagems na tela
     let buscar = document.querySelector('.interaçao');
     buscar.innerHTML = '';
-    
-    for (let i = 0; i < resposta.data.length; i++){
+
+    for (let i = 0; i < resposta.data.length; i++) {
         if (resposta.data[i].type === 'status') {
             buscar.innerHTML += `<div class="pessoas status" data-test="message">
-             <p> <span class = "timer"> ${resposta.data[i].time} 
+             <p> <span class = "timer"> (${resposta.data[i].time}) 
              </span> <span class = "negrito"> ${resposta.data[i].from}
              </span> ${resposta.data[i].text}</p>
          </div>`
-        } else if (resposta.data[i].type === 'message'){
+        } else if (resposta.data[i].type === 'message') {
             buscar.innerHTML += `<div class="pessoas message" data-test="message">
-             <p> <span class = "timer"> ${resposta.data[i].time} 
+             <p> <span class = "timer"> (${resposta.data[i].time}) 
              </span> <span class = "negrito"> ${resposta.data[i].from}
              </span> para <span class = "negrito"> ${resposta.data[i].to} 
              </span> ${resposta.data[i].text}</p>
          </div>`
-        } else if(resposta.data[i].type === 'private_message' &&
-        ((resposta.data[i].from === adicionar.name) || 
-        (resposta.data[i].to === adicionar.name))
-        ){
+        } else if (resposta.data[i].type === 'private_message' &&
+            ((resposta.data[i].from === adicionar.name) ||
+                (resposta.data[i].to === adicionar.name))
+        ) {
             buscar.innerHTML += `<div class="pessoas privado" data-test="message">
-             <p> <span class = "timer"> ${resposta.data[i].time} 
+             <p> <span class = "timer"> (${resposta.data[i].time}) 
              </span> <span class = "negrito"> ${resposta.data[i].from}
              </span> reservdamente para <span class = "negrito"> ${resposta.data[i].to} 
              </span> ${resposta.data[i].text}</p>
          </div>`
         };
     };
-} ;
+};
